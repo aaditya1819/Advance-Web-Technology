@@ -1,0 +1,126 @@
+/* Basic reset and typography */
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Main container style */
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 90%;
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Input fields styling */
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+/* Normal focus state */
+input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+/* Highlight for invalid input fields (red border) */
+.error-input {
+    border-color: #e74c3c !important;
+    background-color: #fffaf9;
+}
+
+.error-input:focus {
+    box-shadow: 0 0 5px rgba(231, 76, 60, 0.3);
+}
+
+/* Error messages below inputs */
+.error-msg {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+/* Submit button styling */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background-color: #2980b9;
+}
+
+.submit-btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+/* Disabled state for submit button */
+.submit-btn:disabled {
+    background-color: #a9cce3;
+    cursor: not-allowed;
+    color: #ebf5fb;
+}
+
+/* Success message block */
+.success-msg {
+    margin-top: 25px;
+    padding: 15px;
+    background-color: #d4edda;
+    color: #155724;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #c3e6cb;
+    font-weight: 500;
+    animation: fadeIn 0.5s;
+}
+
+/* Keyframes for simple appearance animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

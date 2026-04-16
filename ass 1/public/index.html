@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Registration form built with AngularJS and Express">
+    <title>Modern AngularJS Registration</title>
+    <!-- AngularJS CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- Web Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="FormController">
+    <div class="container">
+        <div class="form-wrapper">
+            <div class="header">
+                <h2>Create an Account</h2>
+                <p>Join us today! Please fill in your details.</p>
+            </div>
+            
+            <div class="alert success-alert" ng-show="submitSuccess" ng-cloak>
+                {{ successMessage }}
+            </div>
+            
+            <div class="alert error-alert" ng-show="submitError" ng-cloak>
+                {{ errorMessage }}
+                <ul ng-if="serverErrors.length > 0">
+                    <li ng-repeat="err in serverErrors">{{ err }}</li>
+                </ul>
+            </div>
+
+            <!-- novalidate prevents HTML5 native validation so AngularJS can take over -->
+            <form name="regForm" ng-submit="submitForm(regForm.$valid)" novalidate>
+                
+                <!-- Name Field -->
+                <div class="form-group" ng-class="{ 'has-error': regForm.name.$invalid && !regForm.name.$pristine, 'has-success': regForm.name.$valid }">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" ng-model="user.name" required placeholder="John Doe" autocomplete="name">
+                    <div class="error-messages" ng-show="regForm.name.$invalid && !regForm.name.$pristine" ng-cloak>
+                        <span ng-show="regForm.name.$error.required">Name is required.</span>
+                    </div>
+                </div>
+
+                <!-- Email Field -->
+                <div class="form-group" ng-class="{ 'has-error': regForm.email.$invalid && !regForm.email.$pristine, 'has-success': regForm.email.$valid }">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" ng-model="user.email" required 
+                           ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]+$/" placeholder="john@example.com" autocomplete="email">
+                    <div class="error-messages" ng-show="regForm.email.$invalid && !regForm.email.$pristine" ng-cloak>
+                        <span ng-show="regForm.email.$error.required">Email is required.</span>
+                        <span ng-show="regForm.email.$error.pattern || regForm.email.$error.email">Invalid email format.</span>
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group" ng-class="{ 'has-error': regForm.password.$invalid && !regForm.password.$pristine, 'has-success': regForm.password.$valid }">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" ng-model="user.password" required ng-minlength="8" placeholder="••••••••" autocomplete="new-password">
+                    <div class="error-messages" ng-show="regForm.password.$invalid && !regForm.password.$pristine" ng-cloak>
+                        <span ng-show="regForm.password.$error.required">Password is required.</span>
+                        <span ng-show="regForm.password.$error.minlength">Password must be at least 8 characters.</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" ng-disabled="regForm.$invalid || isLoading">
+                    <span ng-show="!isLoading">Register Now</span>
+                    <span ng-show="isLoading" class="spinner" ng-cloak></span>
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Application Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
