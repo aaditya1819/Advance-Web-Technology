@@ -1,0 +1,29 @@
+<div class="card">
+  <h2>Students List</h2>
+  <div *ngIf="students.length === 0" class="empty-state">
+    No students found. Please add a student.
+  </div>
+  
+  <table *ngIf="students.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Course</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.course }}</td>
+        <td>
+          <button class="btn-danger" (click)="deleteStudent(student.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

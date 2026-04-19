@@ -1,0 +1,13 @@
+<nav class="navbar">
+  <div class="logo">Angular Students App</div>
+  <ul class="nav-links">
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+    <li><a routerLink="/students" routerLinkActive="active">Students List</a></li>
+    <li><a routerLink="/add-student" routerLinkActive="active">Add Student</a></li>
+    <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

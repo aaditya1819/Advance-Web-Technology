@@ -1,0 +1,41 @@
+<div class="card">
+  <h2>Students Record Database</h2>
+
+  <!-- Loading State Validation -->
+  <div *ngIf="isLoading" class="alert loading-state">
+    <p>Loading records organically from Express API... Please wait.</p>
+  </div>
+
+  <!-- Error State Validation -->
+  <div *ngIf="errorMessage && !isLoading" class="alert error-state">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <!-- Database Mapping -->
+  <div *ngIf="!isLoading && !errorMessage">
+    
+    <div *ngIf="students.length === 0" class="empty-state">
+      <p>No student records natively found.</p>
+    </div>
+
+    <!-- Mapping DOM arrays gracefully to HTML Table Structure-->
+    <table *ngIf="students.length > 0">
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>Name (API)</th>
+          <th>Course Enrolled</th>
+          <th>Scores Recorded</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students">
+          <td>{{ student.id }}</td>
+          <td>{{ student.name }}</td>
+          <td>{{ student.course }}</td>
+          <td>{{ student.marks }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
